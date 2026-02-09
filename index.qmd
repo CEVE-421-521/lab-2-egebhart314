@@ -141,7 +141,7 @@ This is **convolution**: we've transformed a hazard distribution (flood probabil
 
 *What would you tell them? Think about what expected value hides.*
 
-*Replace this text with your answer.*
+The expected value tends to obfuscate extremes of the distribution, so the *expected* value may be \$2,900 per year, but if a particularly devestating flood occurs, the costs could be much higher
 :::
 
 ## During Lab
@@ -208,8 +208,8 @@ let
     fig = Figure(size=(700, 300))
 
     # Try changing these values!
-    μ_test = 5.0   # Try: 3.0, 5.0, 7.0
-    σ_test = 2.0   # Try: 1.0, 2.0, 4.0
+    μ_test = 7.0   # Try: 3.0, 5.0, 7.0
+    σ_test = 4.0   # Try: 1.0, 2.0, 4.0
     ξ_test = 0.1   # Try: -0.1, 0.0, 0.1, 0.3
 
     test_dist = GeneralizedExtremeValue(μ_test, σ_test, ξ_test)
