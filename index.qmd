@@ -210,7 +210,7 @@ let
     # Try changing these values!
     μ_test = 7.0   # Try: 3.0, 5.0, 7.0
     σ_test = 4.0   # Try: 1.0, 2.0, 4.0
-    ξ_test = 0.1   # Try: -0.1, 0.0, 0.1, 0.3
+    ξ_test = 0.3   # Try: -0.1, 0.0, 0.1, 0.3
 
     test_dist = GeneralizedExtremeValue(μ_test, σ_test, ξ_test)
 
@@ -232,7 +232,7 @@ end
 -   *Increase σ from 2 to 4?*
 -   *Change ξ from 0.1 to 0.3?*
 
-*Replace this text with your observations.*
+The peak of the distribution appears wider and is generally flatter as well (taking on a lower maximum value)
 :::
 
 #### Monte Carlo Sampling
@@ -527,7 +527,7 @@ end
 ::: {.callout-tip appearance="simple" icon="false" title="Your Response"}
 *Why is the relationship between elevation and expected damage nonlinear? What causes the steep drop-off as elevation increases?*
 
-*Replace this text with your explanation.*
+At low elevations, houses are much more succeptible to most intensities of flooding (including weak, but common floods). However, increasing the elevation just a bit has a major return on investment in protecting against common floods. Since the extreme flooding events are not linearly distributed, it follows that the damage proportion per level of elevation will not be either
 :::
 
 #### Community-Level Damage Distribution
@@ -573,7 +573,7 @@ println("Sum of individual EADs: \$$(round(sum(expected_damages) / 1e6; digits=3
 ::: {.callout-tip appearance="simple" icon="false" title="Your Response"}
 *Why are the total community EAD and the sum of individual EADs equal (or nearly equal)? Would they still be equal if we used different hazard samples for each house?*
 
-*Replace this text with your answer.*
+Since we are using the same storm for every house, the hazard samples are equal so when considering the community vs individual $EAD$, the values are going to be nearly similar. If we used different hazard samples for each house (which may be more physically accurate), the distribution would change.
 :::
 
 ### The SimOptDecisions Framework
@@ -605,19 +605,21 @@ Answer these questions in a few sentences each:
 ::: {.callout-tip appearance="simple" icon="false" title="Question 1"}
 *How does uncertainty in the hazard distribution propagate to uncertainty in damages through convolution?*
 
-*Replace this text with your answer.*
+If the probability distribution has uncertainty about the distribution of tail events (particularly if this is a discrete distribution not a theoretrical, continuous one), tail events with probability 0 would not be included in the damage calculation, meaning that the overall figure is underrepresented.
 :::
 
 ::: {.callout-tip appearance="simple" icon="false" title="Question 2"}
 *Why is expected damage NOT equal to damage at the expected flood stage? (Hint: think about Jensen's inequality and the shape of the damage function.)*
 
-*Replace this text with your answer.*
+Jensen's inequality in general states that $E[\varphi(x)] > \varphi(E[x])$ for any convex function $\varphi(x)$ (in this case, by taking the expected damage at each flood state first we more accurately capture the tails, which $E[x]$ washes out.
 :::
 
 ::: {.callout-tip appearance="simple" icon="false" title="Question 3"}
 *What assumptions did we make that might not hold in reality? List at least three and explain why they matter.*
 
-*Replace this text with your answer.*
+ - *Elevation is the only parameter of note*: Housing material also matters (e.g. flooding may impact a house made entriely of wood than of concrete)
+ - *A single event corresponds to a uniform flood level*: In reality, there is a spatial component to flooding that modulates the hazard for a given house
+ - *Constant probability distribution*: The probability distribution is changing in time (this matters when condisering the impacts of climate change)
 :::
 
 ### Summary
